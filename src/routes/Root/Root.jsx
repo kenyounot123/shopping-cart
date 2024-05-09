@@ -5,7 +5,7 @@ export default function Root() {
     <>
       <Navbar />
       <main>
-        <div className={rootStyle["pic-container"]}>
+        <div className={rootStyle["container"]}>
           <img
             className={rootStyle["banner-img"]}
             src="public/images/mobile-shopping-banner.png"
@@ -13,9 +13,11 @@ export default function Root() {
           />
         </div>
         <h2 className={rootStyle.title}>
-          Discover the Best Deals on Our Website
+          Discover the Best Deals on Our Website!
         </h2>
-        <button className={rootStyle.btn}>Shop Now</button>
+        <div className={rootStyle["container"]}>
+          <button className={rootStyle.btn}>Shop Now</button>
+        </div>
       </main>
     </>
   );

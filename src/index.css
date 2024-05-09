@@ -132,6 +132,7 @@ table {
   --primary-background-color: #f8e1c2;
   --text-color: black;
   --accent-color: #995d42;
+  --secondary-accent-color: #c6c4c3;
 }
 body {
   background-color: var(--primary-background-color);
