@@ -6,16 +6,22 @@ export default function Root() {
       <Navbar />
       <main>
         <div className={rootStyle["container"]}>
+          <h1 className={rootStyle["banner-title"]}>Summer Deals 25% Off!</h1>
           <img
-            className={rootStyle["banner-img"]}
-            src="public/images/mobile-shopping-banner.png"
-            alt="Shirts"
+            className={rootStyle["desktop-banner-img"]}
+            src="/images/shopping-banner.jpg"
+            alt="Banner"
+          />
+          <img
+            className={rootStyle["mobile-banner-img"]}
+            src="/images/mobile-shopping-banner.png"
+            alt="Banner"
           />
         </div>
-        <h2 className={rootStyle.title}>
-          Discover the Best Deals on Our Website!
-        </h2>
-        <div className={rootStyle["container"]}>
+        <div className={rootStyle["title-and-btn"]}>
+          <h2 className={rootStyle.title}>
+            Discover the Best Deals on Our Website!
+          </h2>
           <button className={rootStyle.btn}>Shop Now</button>
         </div>
       </main>

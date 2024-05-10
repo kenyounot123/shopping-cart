@@ -1,7 +1,22 @@
 import navStyle from "./Navbar.module.css";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 function HamburgerMenu() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => {
+    function handleCloseDropdown(e) {
+      if (
+        e.target.className === navStyle["dropdown-menu-overlay"] &&
+        dropdownOpen === true
+      ) {
+        setDropdownOpen(!dropdownOpen);
+      }
+    }
+    window.addEventListener("click", handleCloseDropdown);
+    return () => {
+      window.removeEventListener("click", handleCloseDropdown);
+    };
+  }, [dropdownOpen]);
   return (
     <>
       {dropdownOpen ? (
@@ -9,9 +24,25 @@ function HamburgerMenu() {
           <div className={navStyle["dropdown-menu-overlay"]}></div>
           <div className={navStyle["dropdown-menu"]}>
             <ul className={navStyle["menu-items"]}>
-              <li>Home</li>
-              <li>Shop Now</li>
-              <li>View Cart</li>
+              <li>
+                <Link
+                  onClick={() => setDropdownOpen(false)}
+                  className={navStyle["list-items"]}
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link className={navStyle["list-items"]} to="shop">
+                  Shop Now
+                </Link>
+              </li>
+              <li>
+                <Link className={navStyle["list-items"]} to="cart">
+                  View Cart
+                </Link>
+              </li>
             </ul>
           </div>
         </>
