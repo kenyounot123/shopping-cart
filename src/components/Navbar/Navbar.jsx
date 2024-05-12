@@ -1,6 +1,8 @@
 import navStyle from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Icon from "@mdi/react";
+import { mdiCartOutline, mdiAccountCircleOutline } from "@mdi/js";
 function HamburgerMenu() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
@@ -60,12 +62,30 @@ function HamburgerMenu() {
   );
 }
 export default function Navbar() {
+  const currPath = useLocation();
+  function isActive(path) {
+    return path === currPath.pathname;
+  }
   return (
     <header className={navStyle.header}>
       <nav>
-        <ul className={navStyle["d-grid"]}>
+        <ul className={navStyle["display-change"]}>
           <HamburgerMenu />
+          <div className={navStyle["left-nav"]}>
+            <li className={isActive("/") ? navStyle.active : ""}>Home</li>
+            <li className={isActive("shop") ? navStyle.active : ""}>
+              Shop Now
+            </li>
+          </div>
           <li className={navStyle.title}>ShopFast</li>
+          <div className={navStyle["right-nav"]}>
+            <li>
+              <Icon path={mdiCartOutline} size={1.5} />
+            </li>
+            <li>
+              <Icon path={mdiAccountCircleOutline} size={1.5} />
+            </li>
+          </div>
         </ul>
       </nav>
     </header>

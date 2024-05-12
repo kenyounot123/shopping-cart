@@ -20,7 +20,7 @@
 .menu-container {
   position: relative;
 }
-.d-grid {
+.display-change {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
@@ -81,13 +81,34 @@
 .menu-items > li:hover {
   cursor: pointer;
 }
-
+.left-nav,
+.right-nav {
+  display: none;
+}
+.left-nav > li {
+  padding-bottom: 10px;
+}
+.active {
+  border-bottom: 1px solid var(--secondary-accent-color);
+}
 /* Show hamburger menu and dropdown on small screens */
 @media (min-width: 800px) {
   .hamburger-btn {
     display: none;
   }
-  .title {
-    grid-column: 6 / 8;
+  .display-change {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav {
+    width: 85%;
+    margin: 0 auto;
+  }
+  .left-nav,
+  .right-nav {
+    display: flex;
+    gap: 80px;
+    font-weight: 600;
   }
 }
