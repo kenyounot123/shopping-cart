@@ -72,15 +72,23 @@ export default function Navbar() {
         <ul className={navStyle["display-change"]}>
           <HamburgerMenu />
           <div className={navStyle["left-nav"]}>
-            <li className={isActive("/") ? navStyle.active : ""}>Home</li>
-            <li className={isActive("shop") ? navStyle.active : ""}>
-              Shop Now
+            <li className={isActive("/") ? navStyle.active : ""}>
+              <Link className={navStyle["nav-items"]} to="/">
+                Home
+              </Link>
+            </li>
+            <li className={isActive("/shop") ? navStyle.active : ""}>
+              <Link className={navStyle["nav-items"]} to="/shop">
+                Shop Now
+              </Link>
             </li>
           </div>
           <li className={navStyle.title}>ShopFast</li>
           <div className={navStyle["right-nav"]}>
             <li>
-              <Icon path={mdiCartOutline} size={1.5} />
+              <Link className={navStyle["nav-items"]} to={"/cart"}>
+                <Icon path={mdiCartOutline} size={1.5} />
+              </Link>
             </li>
             <li>
               <Icon path={mdiAccountCircleOutline} size={1.5} />

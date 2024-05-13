@@ -91,6 +91,10 @@
 .active {
   border-bottom: 1px solid var(--secondary-accent-color);
 }
+.nav-items {
+  composes: list-items;
+  color: black;
+}
 /* Show hamburger menu and dropdown on small screens */
 @media (min-width: 800px) {
   .hamburger-btn {
