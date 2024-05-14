@@ -61,7 +61,7 @@ function HamburgerMenu() {
     </>
   );
 }
-export default function Navbar() {
+export default function Navbar({ itemsInCart, onChange }) {
   const currPath = useLocation();
   function isActive(path) {
     return path === currPath.pathname;
@@ -88,6 +88,7 @@ export default function Navbar() {
             <li>
               <Link className={navStyle["nav-items"]} to={"/cart"}>
                 <Icon path={mdiCartOutline} size={1.5} />
+                <span onChange={onChange}>{itemsInCart}</span>
               </Link>
             </li>
             <li>

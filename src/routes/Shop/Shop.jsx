@@ -5,6 +5,7 @@ import shopStyle from "./Shop.module.css";
 export default function Shop() {
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
+  const [itemsInCart, setItemsInCart] = useState(0);
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => {
@@ -16,14 +17,29 @@ export default function Shop() {
       .then((json) => setProductData(json))
       .catch((error) => setError(error));
   }, []);
+
+  if (error) {
+    // Error page
+    return <p>A network error was encountered</p>;
+  }
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar
+        onChange={() => setItemsInCart((prev) => (prev += 1))}
+        itemsInCart={itemsInCart}
+      ></Navbar>
       <div
         className={`${shopStyle.grid} ${shopStyle.container} ${shopStyle.ptop}`}
       >
         {productData &&
-          productData.map((data, idx) => <Card key={idx} data={data}></Card>)}
+          productData.map((data, idx) => (
+            <Card
+              itemsInCart={itemsInCart}
+              setItemsInCart={setItemsInCart}
+              key={idx}
+              data={data}
+            ></Card>
+          ))}
       </div>
     </>
   );

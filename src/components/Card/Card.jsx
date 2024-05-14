@@ -1,6 +1,6 @@
 import cardStyle from "./Card.module.css";
 import { useState } from "react";
-export default function Card({ data }) {
+export default function Card({ data, itemsInCart, setItemsInCart }) {
   const [quantity, setQuantity] = useState(1);
   const handleQuantityChange = (event) => {
     const value = event.target.value;
@@ -16,7 +16,19 @@ export default function Card({ data }) {
       setQuantity((prevState) => (prevState -= 1));
     }
   };
-  const handleSubmit = () => {};
+  const itemPrice = () => {
+    const price = data.price;
+    return quantity * price;
+  };
+  const handleSubmit = (e) => {
+    // Get total price of item
+    // Add to cart
+    // Update number of items in cart
+    // Maybe add some sort of animation or effect
+    // so that users know their item was added to cart
+    e.preventDefault();
+    setItemsInCart((prev) => (prev += quantity));
+  };
   return (
     <div className={cardStyle["card-container"]}>
       <p className={cardStyle["card-title"]}>{data.title}</p>
@@ -39,6 +51,7 @@ export default function Card({ data }) {
             -
           </button>
           <input
+            name="quantity"
             className={cardStyle["quantity-input"]}
             required
             value={quantity}
@@ -51,6 +64,7 @@ export default function Card({ data }) {
           </button>
         </div>
         <button
+          onClick={handleSubmit}
           className={`${cardStyle["submit-item"]} ${cardStyle["input-fields"]}`}
         >
           Add To Cart
