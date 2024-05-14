@@ -35,18 +35,49 @@
   composes: container;
   display: flex;
   margin-top: 15px;
+  margin-bottom: 15px;
   justify-content: flex-end;
   color: var(--accent-color);
   font-weight: 900;
 }
-.quantity {
+.input-fields {
   width: 100px;
   height: 30px;
-  border: 1px solid var(--accent-color);
   border-radius: 20px;
+  border: 1px solid var(--accent-color);
+}
+.quantity {
+  composes: input-fields;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .submit-item {
-  composes: quantity;
+  composes: input-fields;
   background-color: var(--accent-color);
   color: white;
+  text-align: center;
+}
+.subtract-btn,
+.add-btn {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+  font-weight: 900;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.subtract-btn {
+  margin-left: 8px;
+}
+.add-btn {
+  margin-right: 8px;
+}
+.subtract-btn:hover,
+.add-btn:hover {
+  cursor: pointer;
+}
+.quantity-input {
+  text-align: center;
+  max-width: 40%;
 }
