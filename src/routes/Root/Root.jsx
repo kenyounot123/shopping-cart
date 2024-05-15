@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import rootStyle from "./Root.module.css";
+import { Link } from "react-router-dom";
 export default function Root() {
   return (
     <>
@@ -22,7 +23,9 @@ export default function Root() {
           <h2 className={rootStyle.title}>
             Discover the Best Deals on Our Website!
           </h2>
-          <button className={rootStyle.btn}>Shop Now</button>
+          <Link className={rootStyle["place-center"]} to={"/shop"}>
+            <button className={rootStyle.btn}>Shop Now</button>
+          </Link>
         </div>
       </main>
     </>

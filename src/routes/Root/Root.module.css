@@ -52,6 +52,9 @@
   cursor: pointer;
   opacity: 0.9;
 }
+.place-center {
+  align-self: center;
+}
 @media (min-width: 800px) {
   .desktop-banner-img {
     display: block;

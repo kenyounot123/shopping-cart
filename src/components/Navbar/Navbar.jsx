@@ -1,8 +1,9 @@
 import navStyle from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Icon from "@mdi/react";
 import { mdiCartOutline, mdiAccountCircleOutline } from "@mdi/js";
+import { CartContext } from "../../helpers/CartContext";
 function HamburgerMenu() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
@@ -61,10 +62,16 @@ function HamburgerMenu() {
     </>
   );
 }
-export default function Navbar({ itemsInCart, onChange }) {
+export default function Navbar() {
+  const { cart } = useContext(CartContext);
   const currPath = useLocation();
   function isActive(path) {
     return path === currPath.pathname;
+  }
+  function totalCartItems() {
+    return cart.reduce((acc, item) => {
+      return acc + item.qty;
+    }, 0);
   }
   return (
     <header className={navStyle.header}>
@@ -88,7 +95,7 @@ export default function Navbar({ itemsInCart, onChange }) {
             <li>
               <Link className={navStyle["nav-items"]} to={"/cart"}>
                 <Icon path={mdiCartOutline} size={1.5} />
-                <span onChange={onChange}>{itemsInCart}</span>
+                <span>{totalCartItems()}</span>
               </Link>
             </li>
             <li>

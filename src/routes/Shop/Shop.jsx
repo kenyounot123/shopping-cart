@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import Navbar from "../../components/Navbar/Navbar";
 import shopStyle from "./Shop.module.css";
+import { CartContext } from "../../helpers/CartContext";
 export default function Shop() {
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
-  const [itemsInCart, setItemsInCart] = useState(0);
+  const { cart, addToCart } = useContext(CartContext);
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => {
@@ -24,21 +26,13 @@ export default function Shop() {
   }
   return (
     <>
-      <Navbar
-        onChange={() => setItemsInCart((prev) => (prev += 1))}
-        itemsInCart={itemsInCart}
-      ></Navbar>
+      <Navbar></Navbar>
       <div
         className={`${shopStyle.grid} ${shopStyle.container} ${shopStyle.ptop}`}
       >
         {productData &&
           productData.map((data, idx) => (
-            <Card
-              itemsInCart={itemsInCart}
-              setItemsInCart={setItemsInCart}
-              key={idx}
-              data={data}
-            ></Card>
+            <Card addToCart={addToCart} key={idx} data={data}></Card>
           ))}
       </div>
     </>

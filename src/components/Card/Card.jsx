@@ -1,6 +1,6 @@
 import cardStyle from "./Card.module.css";
 import { useState } from "react";
-export default function Card({ data, itemsInCart, setItemsInCart }) {
+export default function Card({ data, addToCart }) {
   const [quantity, setQuantity] = useState(1);
   const handleQuantityChange = (event) => {
     const value = event.target.value;
@@ -16,10 +16,7 @@ export default function Card({ data, itemsInCart, setItemsInCart }) {
       setQuantity((prevState) => (prevState -= 1));
     }
   };
-  const itemPrice = () => {
-    const price = data.price;
-    return quantity * price;
-  };
+
   const handleSubmit = (e) => {
     // Get total price of item
     // Add to cart
@@ -27,7 +24,10 @@ export default function Card({ data, itemsInCart, setItemsInCart }) {
     // Maybe add some sort of animation or effect
     // so that users know their item was added to cart
     e.preventDefault();
-    setItemsInCart((prev) => (prev += quantity));
+    const qty = quantity;
+    const totalPrice = data.price * qty;
+    const item = { id: data.id, qty: qty, totalPrice: totalPrice };
+    addToCart(item);
   };
   return (
     <div className={cardStyle["card-container"]}>
