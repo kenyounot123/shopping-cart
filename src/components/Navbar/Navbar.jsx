@@ -1,6 +1,6 @@
 import navStyle from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import Icon from "@mdi/react";
 import { mdiCartOutline, mdiAccountCircleOutline } from "@mdi/js";
 import { CartContext } from "../../helpers/CartContext";
@@ -68,6 +68,9 @@ export default function Navbar() {
   function isActive(path) {
     return path === currPath.pathname;
   }
+  // const totalCartItems = useMemo(() => {
+  //   return cart.reduce((acc, item) => acc + item.qty, 0)
+  // }, [cart])
   function totalCartItems() {
     return cart.reduce((acc, item) => {
       return acc + item.qty;

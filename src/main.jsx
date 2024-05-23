@@ -6,6 +6,7 @@ import Root from "./routes/Root/Root";
 import Shop from "./routes/Shop/Shop";
 import Cart from "./routes/Cart/Cart";
 import { CartProvider } from "./helpers/CartContext";
+import { Analytics } from "@vercel/analytics/react";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CartProvider>
+      <Analytics />
       <RouterProvider router={router} />
     </CartProvider>
   </React.StrictMode>
